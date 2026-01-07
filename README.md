@@ -71,8 +71,6 @@ Verify https://localhost:3000/commands.html loads without SSL errors.
 
 ### 6. Test in Word
 
-### 6. Test in Word
-
 1. Open **Word** (desktop or web)
 2. The add-in should appear in the ribbon (if TaskPane is configured)
 3. Open the **Copilot pane** (right side)
