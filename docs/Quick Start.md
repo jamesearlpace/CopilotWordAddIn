@@ -56,7 +56,7 @@ Before starting, confirm Copilot works in your Word:
 After completing this guide, your project should look like this:
 
 ```
-DocumentAnalyzerAgent/
+CopilotWordAddIn/
 ├── appPackage/
 │   ├── manifest.json              # Main app manifest
 │   ├── declarativeAgent.json      # Copilot agent config
@@ -149,7 +149,7 @@ Add this object to the root of the manifest (conventionally after `"validDomains
 "copilotAgents": {
   "declarativeAgents": [
     {
-      "id": "DocumentAnalyzerAgent",
+      "id": "CopilotWordAddIn",
       "file": "declarativeAgent.json"
     }
   ]
@@ -286,7 +286,7 @@ For reference, here's what a complete `manifest.json` should look like after all
     "manifestVersion": "devPreview",
     "version": "1.0.0",
     "id": "YOUR-GUID-HERE",
-    "packageName": "com.contoso.documentanalyzer",
+    "packageName": "com.contoso.copilotwordaddin",
     "developer": {
         "name": "Your Company",
         "websiteUrl": "https://www.example.com",
@@ -315,7 +315,7 @@ For reference, here's what a complete `manifest.json` should look like after all
     "copilotAgents": {
         "declarativeAgents": [
             {
-                "id": "DocumentAnalyzerAgent",
+                "id": "CopilotWordAddIn",
                 "file": "declarativeAgent.json"
             }
         ]

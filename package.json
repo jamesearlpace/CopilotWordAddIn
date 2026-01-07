@@ -1,5 +1,5 @@
 {
-  "name": "document-analyzer-agent",
+  "name": "copilot-word-addin",
   "version": "1.0.0",
   "description": "Word Add-in with Copilot Agent for document analysis",
   "main": "index.js",

@@ -3,7 +3,7 @@
     "manifestVersion": "devPreview",
     "version": "1.0.0",
     "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "packageName": "com.contoso.documentanalyzer",
+    "packageName": "com.contoso.copilotwordaddin",
     "developer": {
         "name": "Contoso",
         "websiteUrl": "https://www.contoso.com",
@@ -32,7 +32,7 @@
     "copilotAgents": {
         "declarativeAgents": [
             {
-                "id": "DocumentAnalyzerAgent",
+                "id": "CopilotWordAddIn",
                 "file": "declarativeAgent.json"
             }
         ]

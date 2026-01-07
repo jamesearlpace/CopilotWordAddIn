@@ -1,4 +1,4 @@
-# Document Analyzer Agent
+# Copilot Word Add-In
 
 A **Microsoft 365 Copilot Declarative Agent** that analyzes Word documents using custom add-in functions. This is a working reference implementation demonstrating how to build Copilot agents that read document content and return intelligent analysis.
 
@@ -82,7 +82,7 @@ Then sideload via Teams:
 1. Open **Word** (desktop or web)
 2. The add-in should appear in the ribbon (if TaskPane is configured)
 3. Open the **Copilot pane** (right side)
-4. Click the agent picker and select **"Document Analyzer Agent"**
+4. Click the agent picker and select **"Copilot Word Add-In"**
 5. Ask questions like:
    - "Analyze this document for compliance issues"
    - "Check if this document is complete"
@@ -92,7 +92,7 @@ Then sideload via Teams:
 ## Project Structure
 
 ```
-DocumentAnalyzerAgent/
+CopilotWordAddIn/
 ├── appPackage/
 │   ├── manifest.json           # M365 unified manifest (devPreview)
 │   ├── declarativeAgent.json   # Agent persona and capabilities
