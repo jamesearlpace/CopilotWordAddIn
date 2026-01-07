@@ -32,7 +32,7 @@ npm install
 npx office-addin-dev-certs install
 ```
 
-This creates trusted SSL certificates at `~/.office-addin-dev-certs/` that webpack will use for HTTPS.
+This creates trusted SSL certificates at `C:\Users\<username>\.office-addin-dev-certs\` (Windows) or `~/.office-addin-dev-certs/` (Mac/Linux) that webpack will use for HTTPS.
 
 ### 3. Configure Azure OpenAI (Optional)
 
@@ -58,16 +58,24 @@ Verify https://localhost:3000/commands.html loads without SSL errors.
 
 > **Note:** The `teamsfx provision` CLI approach often fails. Manual sideloading works reliably.
 
-1. Create `appPackage/build/` folder
-2. Copy these files into it:
-   - `manifest.json`
-   - `declarativeAgent.json`
-   - `document-plugin.json`
-   - All icons from `assets/` folder
-3. Zip the **contents** (not the folder itself) → `DocumentAnalyzerAgent.zip`
-4. Go to **Microsoft Teams** → **Apps** → **Manage your apps**
-5. Click **Upload an app** → **Upload a custom app**
-6. Select your zip file
+Run this PowerShell script from the project root:
+```powershell
+cd appPackage
+New-Item -ItemType Directory -Path "build" -Force
+Copy-Item -Path "..\assets" -Destination "assets" -Recurse -Force
+Compress-Archive -Path "manifest.json", "declarativeAgent.json", "document-plugin.json", "assets" -DestinationPath "build\appPackage.zip" -Force
+Remove-Item -Path "assets" -Recurse -Force
+cd ..
+```
+
+Or manually:
+1. Copy `manifest.json`, `declarativeAgent.json`, `document-plugin.json`, and the `assets/` folder into a temporary folder
+2. Zip those files (at root level, not in a subfolder)
+
+Then sideload via Teams:
+1. Go to **Microsoft Teams** → **Apps** → **Manage your apps**
+2. Click **Upload an app** → **Upload a custom app**
+3. Select `appPackage/build/appPackage.zip`
 
 ### 6. Test in Word
 
@@ -96,7 +104,7 @@ DocumentAnalyzerAgent/
 │   └── taskpane/
 │       ├── taskpane.ts         # Optional task pane logic
 │       └── taskpane.html       # Optional task pane UI
-├── assets/                     # Icons (color.png, outline.png)
+├── assets/                     # Icons (icon-16.png, icon-32.png, icon-80.png, icon-128.png)
 ├── env/                        # Environment files (gitignored)
 ├── webpack.config.js           # Dev server with Office SSL certs
 ├── teamsapp.yaml              # Teams Toolkit config (optional)
@@ -118,10 +126,11 @@ DocumentAnalyzerAgent/
 
 4. **commands.ts** implements the action handler:
    ```typescript
-   Office.actions.associate("analyzeDocument", async (message) => {
+   Office.actions.associate("analyzeDocument", async (message: string) => {
+     const { analysisType } = JSON.parse(message);
      const content = await getDocumentContent();
-     const analysis = await callAzureOpenAI(content, message.analysisType);
-     return { analysisResult: analysis };
+     const analysis = await callAzureOpenAI(content, analysisType);
+     return analysis;
    });
    ```
 
