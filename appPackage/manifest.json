@@ -1,0 +1,133 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+    "manifestVersion": "devPreview",
+    "version": "1.0.0",
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "packageName": "com.contoso.documentanalyzer",
+    "developer": {
+        "name": "Contoso",
+        "websiteUrl": "https://www.contoso.com",
+        "privacyUrl": "https://www.contoso.com/privacy",
+        "termsOfUseUrl": "https://www.contoso.com/terms"
+    },
+    "name": {
+        "short": "Document Analyzer",
+        "full": "Document Analyzer with Copilot Agent"
+    },
+    "description": {
+        "short": "Analyze documents for compliance, completeness, consistency, and sensitivity",
+        "full": "A Word add-in with a Copilot agent that analyzes documents for compliance issues, completeness, consistency, and sensitive content."
+    },
+    "icons": {
+        "color": "assets/icon-128.png",
+        "outline": "assets/icon-32.png"
+    },
+    "accentColor": "#4F6BED",
+    "localizationInfo": {
+        "defaultLanguageTag": "en-us"
+    },
+    "validDomains": [
+        "localhost:3000"
+    ],
+    "copilotAgents": {
+        "declarativeAgents": [
+            {
+                "id": "DocumentAnalyzerAgent",
+                "file": "declarativeAgent.json"
+            }
+        ]
+    },
+    "authorization": {
+        "permissions": {
+            "resourceSpecific": [
+                {
+                    "name": "Document.ReadWrite.User",
+                    "type": "Delegated"
+                }
+            ]
+        }
+    },
+    "extensions": [
+        {
+            "requirements": {
+                "scopes": ["document"],
+                "capabilities": [
+                    {
+                        "name": "WordApi",
+                        "minVersion": "1.3"
+                    }
+                ]
+            },
+            "runtimes": [
+                {
+                    "id": "TaskPaneRuntime",
+                    "type": "general",
+                    "code": {
+                        "page": "https://localhost:3000/taskpane.html"
+                    },
+                    "lifetime": "short",
+                    "actions": [
+                        {
+                            "id": "ShowTaskpane",
+                            "type": "openPage",
+                            "pinnable": false,
+                            "view": "dashboard"
+                        }
+                    ]
+                },
+                {
+                    "id": "CopilotAgentRuntime",
+                    "type": "general",
+                    "code": {
+                        "page": "https://localhost:3000/commands.html"
+                    },
+                    "lifetime": "short",
+                    "actions": [
+                        {
+                            "id": "analyzeDocument",
+                            "type": "executeDataFunction"
+                        }
+                    ]
+                }
+            ],
+            "ribbons": [
+                {
+                    "contexts": ["default"],
+                    "tabs": [
+                        {
+                            "builtInTabId": "TabHome",
+                            "groups": [
+                                {
+                                    "id": "DocumentAnalyzerGroup",
+                                    "label": "Document Analyzer",
+                                    "icons": [
+                                        { "size": 16, "url": "https://localhost:3000/assets/icon-16.png" },
+                                        { "size": 32, "url": "https://localhost:3000/assets/icon-32.png" },
+                                        { "size": 80, "url": "https://localhost:3000/assets/icon-80.png" }
+                                    ],
+                                    "controls": [
+                                        {
+                                            "id": "ShowTaskpaneButton",
+                                            "type": "button",
+                                            "label": "Show Taskpane",
+                                            "icons": [
+                                                { "size": 16, "url": "https://localhost:3000/assets/icon-16.png" },
+                                                { "size": 32, "url": "https://localhost:3000/assets/icon-32.png" },
+                                                { "size": 80, "url": "https://localhost:3000/assets/icon-80.png" }
+                                            ],
+                                            "supertip": {
+                                                "title": "Show Taskpane",
+                                                "description": "Opens the Document Analyzer taskpane"
+                                            },
+                                            "actionId": "ShowTaskpane"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

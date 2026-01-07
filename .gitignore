@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+
+# Environment files with secrets
+env/.env.*.user
+*.env.local
+
+# App package builds (regenerated)
+appPackage/build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Office Add-in dev certificates (user-specific)
+# These are installed via: npx office-addin-dev-certs install

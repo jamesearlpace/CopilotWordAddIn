@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document Analyzer</title>
+    
+    <!-- Office JavaScript Library -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #4F6BED;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        #app-body {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        
+        button {
+            background-color: #4F6BED;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #3d5bd9;
+        }
+        
+        #result {
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            min-height: 100px;
+        }
+        
+        .tip {
+            background-color: #e8f0fe;
+            border-left: 4px solid #4F6BED;
+            padding: 10px 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        .tip strong {
+            color: #4F6BED;
+        }
+    </style>
+</head>
+<body>
+    <h1>📄 Document Analyzer</h1>
+    <p class="subtitle">Analyze your document for compliance, completeness, consistency, and sensitivity</p>
+    
+    <div id="app-body">
+        <div>
+            <label for="analysis-type">Analysis Type:</label>
+            <select id="analysis-type">
+                <option value="compliance">Compliance Check</option>
+                <option value="completeness">Completeness Review</option>
+                <option value="consistency">Consistency Analysis</option>
+                <option value="sensitivity">Sensitivity Detection</option>
+            </select>
+        </div>
+        
+        <button id="analyze-btn">Analyze Document</button>
+        
+        <div id="result">
+            <p>Select an analysis type and click "Analyze Document" to begin.</p>
+        </div>
+        
+        <div class="tip">
+            <strong>💡 Tip:</strong> For AI-powered analysis with natural language, open the Copilot pane and select "Document Analyzer Agent"!
+        </div>
+    </div>
+</body>
+</html>

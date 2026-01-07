@@ -1,0 +1,28 @@
+{
+  "name": "document-analyzer-agent",
+  "version": "1.0.0",
+  "description": "Word Add-in with Copilot Agent for document analysis",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev-server": "webpack serve --mode development",
+    "start": "npm run dev-server",
+    "stop": "taskkill /im node.exe /f",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@microsoft/office-js": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/office-js": "^1.0.0",
+    "@types/office-runtime": "^1.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.4.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0"
+  }
+}

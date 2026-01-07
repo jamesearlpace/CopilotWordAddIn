@@ -1,0 +1,31 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.5/schema.json",
+    "version": "v1.5",
+    "name": "Document Analyzer Agent",
+    "description": "Agent for analyzing Word documents for completeness, compliance, consistency, and sensitivity.",
+    "instructions": "You are a document analysis agent. You help users analyze their Word documents for various criteria including compliance issues, completeness, consistency problems, and sensitive content. When a user asks you to analyze a document, determine what type of analysis they want and call the appropriate function. Present findings in a clear, organized format with specific recommendations.",
+    "conversation_starters": [
+        {
+            "title": "Check for compliance issues",
+            "text": "Analyze this document for compliance and regulatory issues"
+        },
+        {
+            "title": "Verify completeness",
+            "text": "Check if this document is complete and has all required sections"
+        },
+        {
+            "title": "Find inconsistencies",
+            "text": "Look for any inconsistencies or contradictions in this document"
+        },
+        {
+            "title": "Detect sensitive content",
+            "text": "Identify any sensitive information like PII or confidential data in this document"
+        }
+    ],
+    "actions": [
+        {
+            "id": "documentAnalyzerPlugin",
+            "file": "document-plugin.json"
+        }
+    ]
+}

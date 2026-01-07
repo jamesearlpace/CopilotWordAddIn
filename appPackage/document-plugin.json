@@ -1,0 +1,52 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.3/schema.json",
+    "schema_version": "v2.3",
+    "name_for_human": "Document Analyzer",
+    "description_for_human": "Analyzes Word documents for compliance, completeness, consistency, and sensitivity",
+    "namespace": "addinfunction",
+    "functions": [
+        {
+            "name": "analyzeDocument",
+            "description": "Analyzes the current Word document for specified criteria such as compliance, completeness, consistency, or sensitivity.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "analysisType": {
+                        "type": "string",
+                        "description": "The type of analysis to perform. Options: 'compliance' (check for regulatory and policy issues), 'completeness' (verify all required sections exist), 'consistency' (find contradictions), 'sensitivity' (detect PII and confidential data)",
+                        "enum": ["compliance", "completeness", "consistency", "sensitivity"],
+                        "default": "compliance"
+                    }
+                },
+                "required": ["analysisType"]
+            },
+            "returns": {
+                "type": "string",
+                "description": "A detailed analysis report with findings and recommendations"
+            },
+            "states": {
+                "reasoning": {
+                    "description": "`analyzeDocument` reads the entire Word document content and analyzes it based on the specified criteria.",
+                    "instructions": "Determine what type of analysis the user wants from their natural language prompt. Map their request to one of: compliance, completeness, consistency, or sensitivity. If unclear, default to compliance."
+                },
+                "responding": {
+                    "description": "`analyzeDocument` returns a detailed analysis report.",
+                    "instructions": "Present the analysis findings in a clear, organized format. Include specific issues found, their locations in the document if possible, severity levels, and actionable recommendations for improvement."
+                }
+            }
+        }
+    ],
+    "runtimes": [
+        {
+            "type": "LocalPlugin",
+            "spec": {
+                "local_endpoint": "Microsoft.Office.Addin",
+                "allowed_host": ["document"]
+            },
+            "run_for_functions": ["analyzeDocument"],
+            "auth": {
+                "type": "None"
+            }
+        }
+    ]
+}
